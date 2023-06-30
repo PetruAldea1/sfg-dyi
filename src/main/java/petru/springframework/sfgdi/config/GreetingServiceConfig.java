@@ -2,14 +2,12 @@ package petru.springframework.sfgdi.config;
 
 import com.springframewok.pets.PetService;
 import com.springframewok.pets.PetServiceFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.*;
 import petru.springframework.sfgdi.repositories.EnglishGreetingRepository;
 import petru.springframework.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import petru.springframework.sfgdi.services.*;
 
+@ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
     @Bean
@@ -51,10 +49,12 @@ public class GreetingServiceConfig {
         return new I18nEnglishGreetingService(englishGreetingRepository);
     }
 
+    /*
     @Bean
     ConstructorGreetingService constructorGreetingService() {
         return new ConstructorGreetingService();
     }
+    */
 
     @Bean
     PropertyInjectedGreetingService propertyInjectedGreetingService() {
