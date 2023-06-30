@@ -3,8 +3,10 @@ package petru.springframework.sfgdi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 import petru.springframework.sfgdi.controllers.*;
+import petru.springframework.sfgdi.services.PrototypeBean;
+import petru.springframework.sfgdi.services.SingletonBean;
+
 @SpringBootApplication
 public class SfgDiApplication {
 
@@ -43,6 +45,16 @@ public class SfgDiApplication {
                 (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
         System.out.println(constructorInjectedController.getGreeting());
 
+
+        SingletonBean sIngletonBean1 = ctx.getBean(SingletonBean.class);
+        System.out.println(sIngletonBean1.getMyScope());
+        SingletonBean singletonBean2= ctx.getBean(SingletonBean.class);
+        System.out.println(singletonBean2.getMyScope());
+
+        PrototypeBean prototypeBean1= ctx.getBean(PrototypeBean.class);
+        System.out.println(prototypeBean1.getMyScope());
+        PrototypeBean prototypeBean2= ctx.getBean(PrototypeBean.class);
+        System.out.println(prototypeBean2.getMyScope());
     }
 
 }
